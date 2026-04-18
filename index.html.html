@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>VAL-CALC</title>
+  <link rel="icon" type="image/jpeg" href="lgo2.jpeg">
+    <style>
+        body {
+            /* This adds your Logo.jpeg to the background of the whole page */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('logo.jpeg.jpeg') no-repeat center center fixed; 
+            background-size: cover;
+            
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calc-container {
+            /* Changed to semi-transparent so you can see the background through it */
+            background-color: rgba(30, 30, 30, 0.85); 
+            backdrop-filter: blur(10px); /* Adds a nice blur effect */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.8);
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        /* Styling for the small logo inside the box */
+        .inner-logo {
+            width: 70px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        input, select {
+            background-color: #333;
+            border: 1px solid #444;
+            color: white;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc-container">
+        <img src="Logo.jpeg" alt="Logo" class="inner-logo">
+        
+        <h2>Simple Dark Calculator</h2>
+        
+        <input type="number" id="num1" placeholder="First Number">
+        
+        <select id="op">
+            <option value="+">+</option>
+            <option value="-">−</option>
+            <option value="*">×</option>
+            <option value="/">÷</option>
+        </select>
+        
+        <input type="number" id="num2" placeholder="Second Number">
+        
+        <br>
+        
+        <button onclick="calculate()">Calculate</button>
+        
+        <div id="result">Result: 0</div>
+    </div>
+
+    <script>
+        function calculate() {
+            const n1 = parseFloat(document.getElementById('num1').value);
+            const n2 = parseFloat(document.getElementById('num2').value);
+            const op = document.getElementById('op').value;
+            let res = 0;
+
+            if (isNaN(n1) || isNaN(n2)) {
+                res = "Please enter numbers";
+            } else {
+                switch(op) {
+                    case "+": res = n1 + n2; break;
+                    case "-": res = n1 - n2; break;
+                    case "*": res = n1 * n2; break;
+                    case "/": res = n2 !== 0 ? n1 / n2 : "Can't divide by 0"; break;
+                }
+            }
+
+            document.getElementById('result').innerText = "Result: " + res;
+        }
+    </script>
+
+</body>
+</html>
